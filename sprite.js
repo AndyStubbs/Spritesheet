@@ -61,7 +61,11 @@ fs.readdir( directory, async ( err, files ) => {
 		const imagePath = path.join( directory, image );
 		const row = Math.floor( index / grid );
 		const col = index % grid;
-		const x = col * spriteWidth;
+
+		// Center the sprites horizontally
+		const x = col * spriteWidth + Math.floor( ( maxWidth - metadata[ imagePath ].width ) / 2 );
+
+		// Put the sprites at the bottom of the canvas
 		const y = row * spriteHeight + maxHeight - metadata[ imagePath ].height;
 		console.log( imagePath, x, y );
 		sprites.push( { "input": imagePath, "top": y, "left": x } );
